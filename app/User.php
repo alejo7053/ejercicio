@@ -4,6 +4,7 @@ namespace Exercise;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
 class User extends Authenticatable
 {
@@ -27,4 +28,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function scopeSearch($query, $search){
+        return $query->where('name','LIKE',"%$search%")
+        ->orWhere('mobile','LIKE',"%$search%")
+        ->orWhere('telephone','LIKE',"%$search%")
+        ->orWhere('identification','LIKE',"%$search%")
+        ->orWhere('role','LIKE',"%$search%");;
+    }
 }

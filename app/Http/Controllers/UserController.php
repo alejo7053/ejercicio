@@ -6,6 +6,10 @@ use DB;
 use Exercise\User;
 use Illuminate\Http\Request;
 
+use Exercise\CustomCollection;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
+
 class UserController extends Controller
 {
 
@@ -20,25 +24,36 @@ class UserController extends Controller
         return view('user.index')->with('user', $user);
     }
 
-    public function getShow()
+    public function getShow(Request $request)
     {
-        $users = DB::table('users')->get();
+        $users = User::orderBy('name','ASC')->search($request->search)->get();
         return view('user.show')->with('users', $users);
     }
 
-    public function getEdit($id)
-    {
-        $user = User::findOrFail($id);
-        return view('user.edit')->with('user', $user);
-    }
+    // public function getCreate()
+    // {
+    //     return view('auth.register');
+    // }
 
-    public function putEdit(Request $request, $id)
-    {
-        $user = User::findOrFail($id);
-        $user->name = $request->name;
+    // public function postCreate()
+    // {
+    //
+    //   return view('auth.register');
+    // }
 
-        $user->save();
+    // public function getEdit($id)
+    // {
+    //     $user = User::findOrFail($id);
+    //     return view('user.edit')->with('user', $user);
+    // }
 
-        return redirect('auth.register');
-    }
+    // public function putEdit(Request $request, $id)
+    // {
+    //     $user = User::findOrFail($id);
+    //     $user->name = $request->name;
+    //
+    //     $user->save();
+    //
+    //     return redirect('auth.register');
+    // }
 }

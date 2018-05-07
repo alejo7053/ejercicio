@@ -35,7 +35,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                       @auth
-                          <li><a class="nav-link" href="{{url('/user/index')}}">Perfil</a></li>
+                          <li><a class="nav-link" href="{{ route('userIndex') }}">Perfil</a></li>
                       @endauth
                     </ul>
 
