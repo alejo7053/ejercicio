@@ -3,16 +3,16 @@
 @section('content')
 
 <div class="container">
-    Nombre:         {{ $user->name }}
-    Apellido:       {{ $user->lastname }}
-    Email:          {{ $user->email }}
-    Celular:        {{ $user->mobile }}
-    Telefono:       {{ $user->telephone }}
-    Identificación: {{ $user->identification }}
+    Nombre:         {{ $user->name }}<br>
+    Apellido:       {{ $user->lastname }}<br>
+    Email:          {{ $user->email }}<br>
+    Celular:        {{ $user->mobile }}<br>
+    Telefono:       {{ $user->telephone }}<br>
+    Identificación: {{ $user->identification }}<br>
 
-    @auth
+    @if(Auth::user()->role == "admin")
         <a class="btn btn-dark" href="{{ url('/user/show') }}" role="button">Ver Usuarios Registrados</a>
-    @endauth
+    @endif
 </div>
 
 @endsection

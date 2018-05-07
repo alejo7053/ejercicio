@@ -81,22 +81,6 @@
                             </div>
                         </div>
 
-                        @auth
-                            <div class="form-group row">
-                                <label for="lastname" class="col-md-4 col-form-label text-md-right">{{ __('Rol') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="lastname" type="text" class="form-control{{ $errors->has('lastname') ? ' is-invalid' : '' }}" name="lastname" value="{{ old('lastname') }}" required autofocus>
-
-                                    @if ($errors->has('lastname'))
-                                        <span class="invalid-feedback">
-                                            <strong>{{ $errors->first('lastname') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-                        @endauth
-
                         <div class="form-group row">
                             <label for="identification" class="col-md-4 col-form-label text-md-right">{{ __('Identificación') }}</label>
 

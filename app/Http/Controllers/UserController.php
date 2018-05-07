@@ -8,15 +8,15 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    //
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
 
-    public function getIndex($id)
+    public function __construct()
     {
-        $user = User::findOrFail($id);
+        $this->middleware('auth');
+    }
+
+    public function getIndex(Request $request)
+    {
+        $user = User::findOrFail($request->user()->id);
         return view('user.index')->with('user', $user);
     }
 
@@ -25,17 +25,6 @@ class UserController extends Controller
         $users = DB::table('users')->get();
         return view('user.show')->with('users', $users);
     }
-
-    public function getCreate()
-    {
-        return view('auth.register');
-    }
-
-    // public function postCreate()
-    // {
-    //
-    //   return view('auth.register');
-    // }
 
     public function getEdit($id)
     {
